@@ -1,1 +1,6 @@
-# p8105_hw1_rh3132
+# HW1
+
+this is the repository for HW1 P8105.
+
+
+
