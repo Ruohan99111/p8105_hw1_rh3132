@@ -5,27 +5,32 @@ output: github_document
 
 ```{r setup}
  library(tidyverse)
- library(ggplot2)
+ library(moderndive)
 ```
 
-## The dataset shows 358 entries and  15 total columns##
 
-#Mean temperature#
+
+#Problem 1#
 
 ```{r mean temp}
 data ("early_january_weather")
+ nrow(early_january_weather)
+ ncol(early_january_weather)
 mean (early_january_weather $ temp,)
 ```
-###the mean temperature is 39.58
+
+##The dataset shows 358 entries and  15 total columns##
+##the mean temperature is 39.58##
 
 ## plot##
-```{r}
-ggplot ( data=early_january_weather, aes(x=time_hour, y=temp, color=humid)) + geom_point()
+```{r templot}
+scatter_plot <- ggplot ( data=early_january_weather, aes(x=time_hour, y=temp, color=humid)) + geom_point()
+print(scatter_plot)
 
 ##The scatter plot displays a collection of points that vary with both highs and lows, but overall there is a positive trend. ##
 
-ggsave( scatterplot_temp_vs_time_hour.png, plot = scatter_plot,
-       witdth = 10, height = 6, units = in )
+ggsave( "scatterplot_temp_vs_time_hour.png" , plot = scatter_plot,
+       width = 10, height = 6, units = "in" )
 ```
 
 
