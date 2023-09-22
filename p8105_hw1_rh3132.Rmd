@@ -10,17 +10,21 @@ output: github_document
 
 
 
-#Problem 1#
+## Problem 1 ##
 
 ```{r mean temp}
 data ("early_january_weather")
+
  nrow(early_january_weather)
+ 
  ncol(early_january_weather)
+ 
 mean (early_january_weather $ temp,)
 ```
 
-##The dataset shows 358 entries and  15 total columns##
-##the mean temperature is 39.58##
+
+##The dataset shows 358 entries and  15 total columns, the mean temperature is 39.58##
+
 
 ## plot##
 ```{r templot}
@@ -33,6 +37,44 @@ ggsave( "scatterplot_temp_vs_time_hour.png" , plot = scatter_plot,
        width = 10, height = 6, units = "in" )
 ```
 
+## Problem 2 ##
+
+```{r tibble creation}
+
+my_tibble <- tibble(
+      numeric_vector = rnorm ( 10 ),
+      logical_vector = numeric_vector > 0,
+      character_vector = c("Monday", "Tuesday", "Wednesday", "apple", "cherry", "low", "medium", "high", "happy", "sad"),
+      factor_vector = factor (c("Monday", "Tuesday", "Wednesday", "apple", "cherry", "low", "medium", "high", "happy", "sad"))
+)
+
+```
 
 
+```{r mean of variable in df}
+my_tibble
 
+mean (my_tibble $ numeric_vector)
+
+mean (my_tibble $ logical_vector)
+
+mean (my_tibble $ character_vector)
+
+mean (my_tibble $ factor_vector)
+
+```
+####For the variables, only numeric and logical works in taking the mean.####
+
+
+```{r using as.numeric}
+
+numeric_from_logical <- as.numeric( my_tibble $ logical_vector )
+
+numeric_from_char <- as.numeric( my_tibble $ character_vector )
+
+numeric_from_factor <- as.numeric( my_tibble $ factor_vector )
+
+```
+###Logical to numeric will work without issues, converting TRUE to 1 and FALSE to 0. Character to numeric result in NAs, as strings can't be naturally converted to numbers. Factor to numeric will convert the factor levels to their underlying integer representation.###
+
+## FINISHED ##
